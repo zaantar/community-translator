@@ -32,7 +32,7 @@ class CommunityTranslator {
 
 	function init() {
 		wp_register_style( self::STYLE_HANDLE, plugins_url( 'community-translator.css', __FILE__ ) );
-		wp_register_script( self::SCRIPT_HANDLE, plugins_url( 'community-translator.js', __FILE__ ) );
+		wp_register_script( self::SCRIPT_HANDLE, plugins_url( 'community-translator.js', __FILE__ ), array( 'jquery' ) );
 	}
 
 
