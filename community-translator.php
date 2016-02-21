@@ -22,8 +22,8 @@ class CommunityTranslator {
 
 	public function __construct() {
 		add_action( 'init', array( $this, 'init' ) );
-		add_filter( 'gettext', array( $this, 'catch_gettext' ) );
-		add_filter( 'gettext_with_context', array( $this, 'catch_gettext_with_context' ) );
+		add_filter( 'gettext', array( $this, 'catch_gettext' ), 10, 3 );
+		add_filter( 'gettext_with_context', array( $this, 'catch_gettext_with_context' ), 10, 4 );
 		add_action( 'wp_footer', array( $this, 'jumpstart' ) );
 		add_action( 'admin_print_footer_scripts', array( $this, 'jumpstart' ) );
 	}
