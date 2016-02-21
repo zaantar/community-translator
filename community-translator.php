@@ -56,6 +56,24 @@ class CommunityTranslator {
 
 	}
 
+	function jumpstart_template() {
+		$template = '
+<script type="text/javascript">
+	translatorJumpstart = {
+		stringsUsedOnPage: %1$s,
+		localeCode: %2$s,
+		languageNames: %3$s,
+		pluralForms: "nplurals=2; plural=(n > 1)",
+		glotPress: {
+			url: %4$s,
+			project: %5$s
+		}
+	};
+	communityTranslator.load();
+</script>';
+		return $template;
+	}
+
 }
 
 
