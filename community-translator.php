@@ -75,3 +75,5 @@ class TextTranslation {
 
 
 }
+
+$GLOBALS['community_translator'] = new CommunityTranslator;
