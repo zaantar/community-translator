@@ -51,9 +51,27 @@ class CommunityTranslator {
 		$this->strings_used_on_page["$original_text#$domain#$context"] = new TextTranslation( $original_text, $translated_text, $domain, $context );
 	}
 
-
 	function jumpstart() {
 
+		$locale = \get_locale();
+		
+		$language = 'Čeština';
+		
+		$url = "https://translate.wordpress.org";
+
+		$project = "wp,wp-plugins/akismet";
+
+		$strings_used_on_page = apply_filters( 'community-translator-strings-used-on-page', $this->strings_used_on_page );
+
+		$strings_used_on_page_js = array();
+
+		if ( false === empty( $strings_used_on_page ) && true === is_array( $strings_used_on_page ) ) {
+			foreach( $this->strings_used_on_page as $string ) {
+				$strings_used_on_page_js = array_merge( $strings_used_on_page_js, $string->get_jumpstart_format() );
+			}
+		}
+
+		printf( $this->jumpstart_template(), wp_json_encode( $strings_used_on_page_js ), wp_json_encode( $locale ), wp_json_encode( $language ), wp_json_encode( esc_url_raw( $url ) ), wp_json_encode( $project )  );
 	}
 
 	function jumpstart_template() {
