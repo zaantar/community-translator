@@ -73,6 +73,15 @@ class TextTranslation {
 		$this->context = $context;
 	}
 
+	public function get_jumpstart_format() {
+
+		$formatted = array( $this->translation => array(
+			$this->original,
+			array( $this->context ),
+		) );
+
+		return $formatted;
+	}
 
 }
 
