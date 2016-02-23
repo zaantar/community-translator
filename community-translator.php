@@ -45,11 +45,13 @@ class CommunityTranslator {
 
 	function catch_gettext( $translated_text, $original_text, $domain ) {
 		$this->strings_used_on_page["$original_text#$domain"] = new TextTranslation( $original_text, $translated_text, $domain );
+		return $translated_text;
 	}
 
 
 	function catch_gettext_with_context( $translated_text, $original_text, $context, $domain ) {
 		$this->strings_used_on_page["$original_text#$domain#$context"] = new TextTranslation( $original_text, $translated_text, $domain, $context );
+		return $translated_text;
 	}
 
 	function jumpstart() {
