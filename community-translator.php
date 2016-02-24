@@ -14,13 +14,17 @@ namespace CommunityTranslator;
 
 class Community_Translator {
 
+	/** @var Community_Translator The reference to singleton instance. */
+	private static $instance;
+
 	const STYLE_HANDLE = 'community-translator';
 
 	const SCRIPT_HANDLE = self::STYLE_HANDLE;
 
 	private $strings_used_on_page = array();
 
-	public function __construct() {
+
+	protected function __construct() {
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
@@ -28,6 +32,20 @@ class Community_Translator {
 		add_filter( 'gettext_with_context', array( $this, 'catch_gettext_with_context' ), 10, 4 );
 		add_action( 'wp_footer', array( $this, 'jumpstart' ) );
 		add_action( 'admin_print_footer_scripts', array( $this, 'jumpstart' ) );
+	}
+
+
+	private function __clone() { }
+
+
+	private function __wakeup() { }
+
+
+	public static function get_instance() {
+		if( null === self::$instance ) {
+			self::$instance = new static();
+		}
+		return self::$instance;
 	}
 
 
@@ -124,4 +142,4 @@ class Text_Translation {
 
 }
 
-$GLOBALS['community_translator'] = new Community_Translator;
+Community_Translator::get_instance();
