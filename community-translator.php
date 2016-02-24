@@ -12,7 +12,7 @@ Domain Path: /languages
 
 namespace CommunityTranslator;
 
-class CommunityTranslator {
+class Community_Translator {
 
 	const STYLE_HANDLE = 'community-translator';
 
@@ -44,13 +44,13 @@ class CommunityTranslator {
 
 
 	function catch_gettext( $translated_text, $original_text, $domain ) {
-		$this->strings_used_on_page["$original_text#$domain"] = new TextTranslation( $original_text, $translated_text, $domain );
+		$this->strings_used_on_page["$original_text#$domain"] = new Text_Translation( $original_text, $translated_text, $domain );
 		return $translated_text;
 	}
 
 
 	function catch_gettext_with_context( $translated_text, $original_text, $context, $domain ) {
-		$this->strings_used_on_page["$original_text#$domain#$context"] = new TextTranslation( $original_text, $translated_text, $domain, $context );
+		$this->strings_used_on_page["$original_text#$domain#$context"] = new Text_Translation( $original_text, $translated_text, $domain, $context );
 		return $translated_text;
 	}
 
@@ -79,26 +79,26 @@ class CommunityTranslator {
 
 	function jumpstart_template() {
 		$template = '
-<script type="text/javascript">
-	translatorJumpstart = {
-		stringsUsedOnPage: %1$s,
-		localeCode: %2$s,
-		languageNames: %3$s,
-		pluralForms: "nplurals=2; plural=(n > 1)",
-		glotPress: {
-			url: %4$s,
-			project: %5$s
-		}
-	};
-	communityTranslator.load();
-</script>';
+			<script type="text/javascript">
+				translatorJumpstart = {
+					stringsUsedOnPage: %1$s,
+					localeCode: %2$s,
+					languageNames: %3$s,
+					pluralForms: "nplurals=2; plural=(n > 1)",
+					glotPress: {
+						url: %4$s,
+						project: %5$s
+					}
+				};
+				communityTranslator.load();
+			</script>';
 		return $template;
 	}
 
 }
 
 
-class TextTranslation {
+class Text_Translation {
 
 	private $original;
 	private $translation;
@@ -124,4 +124,4 @@ class TextTranslation {
 
 }
 
-$GLOBALS['community_translator'] = new CommunityTranslator;
+$GLOBALS['community_translator'] = new Community_Translator;
