@@ -10,7 +10,7 @@ Text Domain: community-translator
 Domain Path: /languages
 */
 
-namespace CommunityTranslator;
+namespace Community_Translator;
 
 class Community_Translator {
 
