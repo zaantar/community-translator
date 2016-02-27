@@ -13,7 +13,7 @@ class Singleton {
 	 *
 	 * @return Singleton The *Singleton* instance.
 	 */
-	public static function getInstance() {
+	public static function get_instance() {
 		if ( null === static::$instance ) {
 			static::$instance = new static();
 		}
