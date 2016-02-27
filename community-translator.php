@@ -18,9 +18,14 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 define( 'COMMUNITY_TRANSLATOR_FILE', __FILE__  );
+define( 'COMMUNITY_TRANSLATOR_INC', plugin_dir_path( __FILE__ ) . 'includes/'  );
 define( 'COMMUNITY_TRANSLATOR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'COMMUNITY_TRANSLATOR_URL', plugin_dir_url( __FILE__ ) );
 
 require plugin_dir_path( __FILE__ ) . 'includes/class-community-translator.php';
 
 Community_Translator::get_instance();
+
+require plugin_dir_path( __FILE__ ) . 'admin/class-community-translator-admin.php';
+
+Community_Translator_Admin::get_instance();
