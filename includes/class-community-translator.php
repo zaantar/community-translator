@@ -24,8 +24,8 @@ class Community_Translator extends Singleton {
 	}
 
 	function init() {
-		wp_register_style( self::STYLE_HANDLE, plugins_url( 'community-translator.css', __FILE__ ) );
-		wp_register_script( self::SCRIPT_HANDLE, plugins_url( 'community-translator.js', __FILE__ ), array( 'jquery' ) );
+		wp_register_style( self::STYLE_HANDLE, plugins_url( 'community-translator.css', COMMUNITY_TRANSLATOR_FILE ) );
+		wp_register_script( self::SCRIPT_HANDLE, plugins_url( 'community-translator.js', COMMUNITY_TRANSLATOR_FILE ), array( 'jquery' ) );
 	}
 
 
