@@ -55,6 +55,9 @@ class Community_Translator extends Singleton {
 		$language = \get_option( 'community_translator_glotpress_language' );
 
 		$url = \get_option( 'community_translator_glotpress_url', home_url( 'glotpress' ) );
+		if ( true === empty( $url ) ) {
+			$url = home_url( 'glotpress' );
+		}
 
 		$project = \get_option( 'community_translator_glotpress_project', 'wp' );
 
