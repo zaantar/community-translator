@@ -6,7 +6,7 @@ class Singleton {
 	/**
 	 * @var Singleton The reference to *Singleton* instance of this class
 	 */
-	protected static $instance;
+	protected static $instances;
 
 	/**
 	 * Returns the *Singleton* instance of this class.
@@ -14,11 +14,12 @@ class Singleton {
 	 * @return Singleton The *Singleton* instance.
 	 */
 	public static function get_instance() {
-		if ( null === static::$instance ) {
-			static::$instance = new static();
+		$class_name = get_called_class();
+		if ( ! isset( self::$instances[ $class_name ] ) ) {
+			self::$instances[ $class_name ] = new $class_name;
 		}
 
-		return static::$instance;
+		return self::$instances[ $class_name ];
 	}
 
 	/**
