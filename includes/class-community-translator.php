@@ -2,6 +2,8 @@
 
 namespace Community_Translator;
 
+require plugin_dir_path( __FILE__ ) . 'class-text-translation.php';
+
 class Community_Translator {
 
 	/** @var Community_Translator The reference to singleton instance. */
