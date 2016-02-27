@@ -2,7 +2,7 @@
 
 namespace Community_Translator;
 
-class Singleton {
+abstract class Singleton {
 	/**
 	 * @var Singleton The reference to *Singleton* instance of this class
 	 */
