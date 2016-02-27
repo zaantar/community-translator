@@ -3,18 +3,15 @@
 namespace Community_Translator;
 
 require plugin_dir_path( __FILE__ ) . 'class-text-translation.php';
+require plugin_dir_path( __FILE__ ) . 'class-singleton.php';
 
-class Community_Translator {
-
-	/** @var Community_Translator The reference to singleton instance. */
-	private static $instance;
+class Community_Translator extends Singleton {
 
 	const STYLE_HANDLE = 'community-translator';
 
 	const SCRIPT_HANDLE = self::STYLE_HANDLE;
 
 	private $strings_used_on_page = array();
-
 
 	protected function __construct() {
 		add_action( 'init', array( $this, 'init' ) );
@@ -25,24 +22,6 @@ class Community_Translator {
 		add_action( 'wp_footer', array( $this, 'jumpstart' ) );
 		add_action( 'admin_print_footer_scripts', array( $this, 'jumpstart' ) );
 	}
-
-
-	private function __clone() {
-	}
-
-
-	private function __wakeup() {
-	}
-
-
-	public static function get_instance() {
-		if ( null === self::$instance ) {
-			self::$instance = new static();
-		}
-
-		return self::$instance;
-	}
-
 
 	function init() {
 		wp_register_style( self::STYLE_HANDLE, plugins_url( 'community-translator.css', __FILE__ ) );
