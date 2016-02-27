@@ -2,8 +2,8 @@
 
 namespace Community_Translator;
 
-require plugin_dir_path( __FILE__ ) . 'class-text-translation.php';
-require plugin_dir_path( __FILE__ ) . 'class-singleton.php';
+require_once plugin_dir_path( __FILE__ ) . 'class-text-translation.php';
+require_once plugin_dir_path( __FILE__ ) . 'class-singleton.php';
 
 class Community_Translator extends Singleton {
 
