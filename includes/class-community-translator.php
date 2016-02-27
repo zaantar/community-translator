@@ -50,13 +50,13 @@ class Community_Translator extends Singleton {
 
 	function jumpstart() {
 
-		$locale = \get_locale();
+		$locale = \get_option( 'community_translator_glotpress_locale', \get_locale() );
 
-		$language = 'Čeština';
+		$language = \get_option( 'community_translator_glotpress_language' );
 
-		$url = "https://translate.wordpress.org";
+		$url = \get_option( 'community_translator_glotpress_url', home_url( 'glotpress' ) );
 
-		$project = "wp,wp-plugins/akismet";
+		$project = \get_option( 'community_translator_glotpress_project', 'wp' );
 
 		$strings_used_on_page = apply_filters( 'community-translator-strings-used-on-page', $this->strings_used_on_page );
 
