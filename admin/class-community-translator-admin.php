@@ -37,6 +37,7 @@ class Community_Translator_Admin extends Singleton {
 		$this->add_settings_field( 'url', __( 'GlotPress URL', 'community-translator' ), 'text_field' , 'esc_url_raw');
 		$this->add_settings_field( 'locale', __( 'GlotPress Locale', 'community-translator' ) );
 		$this->add_settings_field( 'language', __( 'GlotPress Language', 'community-translator' ) );
+		$this->add_settings_field( 'project', __( 'GlotPress Project', 'community-translator' ) );
 	}
 
 	private function add_settings_field( $option, $label, $callback = 'text_field', $sanitize = 'sanitize_text_field' ) {
