@@ -38,4 +38,6 @@ class Text_Translation {
 
 }
 
+require plugin_dir_path( __FILE__ ) . 'includes/class-community-translator.php';
+
 Community_Translator::get_instance();
