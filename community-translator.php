@@ -17,6 +17,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'COMMUNITY_TRANSLATOR_FILE', __FILE__  );
 define( 'COMMUNITY_TRANSLATOR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'COMMUNITY_TRANSLATOR_URL', plugin_dir_url( __FILE__ ) );
 
