@@ -17,6 +17,9 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'COMMUNITY_TRANSLATOR_PATH', plugin_dir_path( __FILE__ ) );
+define( 'COMMUNITY_TRANSLATOR_URL', plugin_dir_url( __FILE__ ) );
+
 require plugin_dir_path( __FILE__ ) . 'includes/class-community-translator.php';
 
 Community_Translator::get_instance();
