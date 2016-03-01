@@ -4,6 +4,10 @@ namespace Community_Translator;
 
 class Translate_Dot_Org_Scraper extends Singleton {
 
+	public $meta_key = 'community_translator_original_translation_id';
+
+
+	//@todo: extend for plurals
 	public function scrape() {
 		$doc = new \DOMDocument();
 		@$doc->loadHTML( file_get_contents( COMMUNITY_TRANSLATOR_PATH . 'test/glotpress-export.html' ) );
@@ -70,6 +74,52 @@ class Translate_Dot_Org_Scraper extends Singleton {
 
 		return join( '', $po );
 
+	}
+
+	public function save_original_ids( $po_array = false ) {
+		if ( ! $po_array ) {
+			$po_array = $this->scrape();
+		}
+
+		//@todo: figure out project_id
+		$project_id = 1;
+
+		foreach( $po_array as $po ) {
+			$this->set_original_translation_id_meta( $po, $project_id );
+		}
+	}
+
+	public function set_original_translation_id_meta( $po, $project_id ) {
+
+		$local_original_id = $this->get_local_original_id_by_po( $po, $project_id );
+
+		if ( $local_original_id && 0 !== intval( $po['original_translation_id'] ) ) {
+			return \gp_update_meta( $local_original_id, $this->meta_key, intval( $po['original_translation_id'] ), 'thing' );
+		}
+
+		return false;
+	}
+
+	public function get_local_original_id_by_po( $po, $project_id ) {
+		global $wpdb;
+
+		$query = $wpdb->prepare(
+			"SELECT * FROM {$wpdb->gp_originals} WHERE `project_id` = %d AND `references` = %s LIMIT 1;",
+			intval( $project_id ),
+			sanitize_text_field( $po['original_references'] )
+		);
+		$row = $wpdb->get_row( $query );
+
+		if ( ! $row ) {
+			return false;
+		}
+
+		//@todo: extend for plural
+		if ( $row->singular !== $po['original_string'] ) {
+			return false;
+		}
+
+		return intval( $row->id );
 	}
 
 }
